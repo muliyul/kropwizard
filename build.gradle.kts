@@ -21,7 +21,8 @@ dependencies {
 	implementation(libs.dropwizard.auth)
 	implementation(libs.jackson.kotlin)
 
-	api(libs.swagger.core)
+	implementation(libs.swagger.core)
+	api(libs.swagger.annotations)
 
 	testImplementation(libs.dropwizard.testing)
 	testImplementation(libs.mockk)

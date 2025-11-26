@@ -18,6 +18,7 @@ dropwizard-auth = { module = "io.dropwizard:dropwizard-auth" }
 dropwizard-testing = { module = "io.dropwizard:dropwizard-testing" }
 
 swagger-core = { module = "io.swagger.core.v3:swagger-jaxrs2-jakarta", version.ref = "swaggerCore" }
+swagger-annotations = { module = "io.swagger.core.v3:swagger-annotations-jakarta", version.ref = "swaggerCore" }
 bytebuddy = { module = "net.bytebuddy:byte-buddy", version.ref = "bytebuddy" }
 
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
