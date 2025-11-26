@@ -1,4 +1,4 @@
-package io.github.muliyul.kropwizard
+package io.github.muliyul.kropwizard.testapp
 
 import io.dropwizard.auth.Auth
 import jakarta.ws.rs.DELETE
@@ -8,13 +8,13 @@ import jakarta.ws.rs.Path
 import java.security.Principal
 
 @Path("/fake")
-interface FakeResource {
+class FakeResource {
 	@GET
-	suspend fun suspending(): String
+	suspend fun suspending(): String = "suspended"
 
 	@POST
-	fun blocking(input: String): String
+	fun echo(input: String): String = input
 
 	@DELETE
-	suspend fun delete(@Auth user: Principal)
+	suspend fun delete(@Auth user: Principal) = Unit
 }

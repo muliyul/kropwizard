@@ -1,1 +1,1 @@
-readerClass: io.github.muliyul.kropwizard.co.DropwizardCompatibleReader
+readerClass: io.github.muliyul.kropwizard.openapi.DropwizardCompatibleReader

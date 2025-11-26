@@ -2,7 +2,6 @@ package io.github.muliyul.kropwizard.co
 
 import jakarta.inject.Inject
 import jakarta.inject.Provider
-import jakarta.servlet.AsyncContext
 import jakarta.ws.rs.container.AsyncResponse
 import jakarta.ws.rs.core.Configuration
 import net.bytebuddy.ByteBuddy
@@ -13,7 +12,6 @@ import org.glassfish.jersey.server.model.ModelProcessor
 import org.glassfish.jersey.server.model.Resource
 import org.glassfish.jersey.server.model.ResourceMethod
 import org.glassfish.jersey.server.model.ResourceModel
-import ru.vyarus.dropwizard.guice.module.installer.scanner.InvisibleForScanner
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 import java.lang.reflect.WildcardType
@@ -25,10 +23,9 @@ import kotlin.coroutines.Continuation
  * non-suspend function.  That dynamically created implementation will then
  * use the [CoroutineInvocationHandler] to invoke the suspend function.
  */
-@InvisibleForScanner
 class CoroutineModelProcessor @Inject constructor(
 	private val injectionManager: InjectionManager,
-	private val asyncContextProvider: Provider<AsyncResponse>
+	private val asyncResponseProvider: Provider<AsyncResponse>
 ) : ModelProcessor {
 
 	/**
@@ -59,7 +56,7 @@ class CoroutineModelProcessor @Inject constructor(
 		.intercept(
 			InvocationHandlerAdapter.of(
 				CoroutineInvocationHandler(
-					asyncContextProvider,
+					asyncResponseProvider,
 					{ method.invocable.handler.getInstance(injectionManager) },
 					method.invocable,
 					// Invoker should ignore the method's return value if the actual value will be

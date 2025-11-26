@@ -1,17 +1,17 @@
-package io.github.muliyul.kropwizard.co
+package io.github.muliyul.kropwizard.openapi
 
-import com.fasterxml.jackson.annotation.*
-import com.fasterxml.jackson.databind.type.*
-import io.dropwizard.auth.*
-import io.swagger.v3.jaxrs2.*
-import io.swagger.v3.oas.integration.SwaggerConfiguration
-import io.swagger.v3.oas.models.*
+import com.fasterxml.jackson.annotation.JsonView
+import com.fasterxml.jackson.databind.type.SimpleType
+import io.dropwizard.auth.Auth
+import io.swagger.v3.jaxrs2.Reader
+import io.swagger.v3.jaxrs2.ResolvedParameter
+import io.swagger.v3.oas.models.Operation
 import jakarta.ws.rs.Consumes
-import java.lang.reflect.*
-import kotlin.coroutines.*
+import java.lang.reflect.Type
+import kotlin.coroutines.Continuation
 
 @Suppress("unused")
-class DropwizardCompatibleReader : Reader() {
+class KotlinCompatibleReader : Reader() {
 
 	override fun getParameters(
 		type: Type?,

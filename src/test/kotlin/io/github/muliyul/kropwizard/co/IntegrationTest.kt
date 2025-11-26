@@ -1,28 +1,24 @@
 package io.github.muliyul.kropwizard.co
 
-import io.dropwizard.core.Application
-import io.dropwizard.core.Configuration
-import io.dropwizard.core.setup.Bootstrap
-import io.dropwizard.core.setup.Environment
-import io.github.muliyul.kropwizard.KropwizardBundle
-import ru.vyarus.dropwizard.guice.test.ClientSupport
-import ru.vyarus.dropwizard.guice.test.jupiter.TestDropwizardApp
+import io.dropwizard.testing.ConfigOverride
+import io.dropwizard.testing.ResourceHelpers
+import io.dropwizard.testing.junit5.DropwizardAppExtension
+import io.dropwizard.testing.junit5.DropwizardExtensionsSupport
+import io.github.muliyul.kropwizard.testapp.TestApp
+import org.junit.jupiter.api.extension.ExtendWith
 import kotlin.test.Test
 
-@TestDropwizardApp(TestApp::class)
+
+@ExtendWith(DropwizardExtensionsSupport::class)
 class IntegrationTest {
+
+	val EXT = DropwizardAppExtension(
+		TestApp::class.java,
+		ResourceHelpers.resourceFilePath("test-config.yaml"),
+		ConfigOverride.randomPorts()
+	)
+
 	@Test
-	fun appStartup() {
-		// If the application starts up without exceptions, the test passes.
-	}
-}
-
-class TestApp : Application<Configuration>() {
-	override fun initialize(bootstrap: Bootstrap<Configuration>) {
-		bootstrap.addBundle(KropwizardBundle())
-	}
-
-	override fun run(p0: Configuration, p1: Environment) {
-
+	fun `should start without exceptions`() {
 	}
 }

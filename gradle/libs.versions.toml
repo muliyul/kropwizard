@@ -1,24 +1,26 @@
 [versions]
-guicey = "8.0.0"
-kotlinx-coroutines = "1.10.2"
-openFeature = "0.7.0"
-swaggerCore = "2.2.40"
-jacksonKotlin = "2.20.0"
 bytebuddy = "1.17.0"
+dropwizard = "5.0.0"
+jacksonKotlin = "2.20.0"
+kotlin = "2.2.10"
+kotlinx-coroutines = "1.10.2"
 mockk = "1.14.6"
+swaggerCore = "2.2.40"
 
 [libraries]
-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref="kotlinx-coroutines" }
-kotlinx-coroutines-slf4j = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-slf4j", version.ref="kotlinx-coroutines" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-slf4j = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-slf4j", version.ref = "kotlinx-coroutines" }
 jackson-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jacksonKotlin" }
 
-guicey-bom = { module = "ru.vyarus.guicey:guicey-bom", version.ref = "guicey" }
-guicey-core = { module = "ru.vyarus:dropwizard-guicey" }
+dropwizard-bom = { module = "io.dropwizard:dropwizard-bom", version.ref = "dropwizard" }
+dropwizard-core = { module = "io.dropwizard:dropwizard-core" }
 dropwizard-auth = { module = "io.dropwizard:dropwizard-auth" }
 dropwizard-testing = { module = "io.dropwizard:dropwizard-testing" }
 
-openFeature = { module = "dev.openfeature:kotlin-sdk", version.ref = "openFeature" }
 swagger-core = { module = "io.swagger.core.v3:swagger-jaxrs2-jakarta", version.ref = "swaggerCore" }
 bytebuddy = { module = "net.bytebuddy:byte-buddy", version.ref = "bytebuddy" }
 
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

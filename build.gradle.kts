@@ -1,9 +1,11 @@
 plugins {
-	kotlin("jvm") version "2.2.10"
+	alias(libs.plugins.kotlin.jvm)
+	`java-library`
+	`maven-publish`
 }
 
 group = "io.github.muliyul.kropwizard"
-version = "1.0-SNAPSHOT"
+version = "0.1"
 
 repositories {
 	mavenCentral()
@@ -14,12 +16,11 @@ dependencies {
 	implementation(libs.kotlinx.coroutines.slf4j)
 	implementation(libs.bytebuddy)
 
-	implementation(platform(libs.guicey.bom))
-	implementation(libs.guicey.core)
+	implementation(platform(libs.dropwizard.bom))
+	implementation(libs.dropwizard.core)
 	implementation(libs.dropwizard.auth)
 	implementation(libs.jackson.kotlin)
 
-	api(libs.openFeature)
 	api(libs.swagger.core)
 
 	testImplementation(libs.dropwizard.testing)
@@ -30,6 +31,22 @@ dependencies {
 tasks.test {
 	useJUnitPlatform()
 }
+
 kotlin {
-	jvmToolchain(21)
+	jvmToolchain(JavaVersion.VERSION_21.ordinal)
+}
+
+publishing {
+	repositories {
+		repositories {
+			maven {
+				name = "GitHubPackages"
+				url = uri("https://maven.pkg.github.com/muliyul/kropwizard")
+				credentials {
+					username = System.getenv("GITHUB_ACTOR")
+					password = System.getenv("GITHUB_TOKEN")
+				}
+			}
+		}
+	}
 }
