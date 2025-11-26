@@ -1,6 +1,5 @@
-package io.github.muliyul.kropwizard.co
+package io.github.muliyul.kropwizard.openapi
 
-import io.github.muliyul.kropwizard.openapi.KotlinCompatibleReader
 import io.github.muliyul.kropwizard.testapp.FakeResource
 import io.swagger.v3.oas.models.OpenAPI
 import jakarta.ws.rs.core.MediaType
@@ -8,7 +7,7 @@ import kotlin.test.Test
 import kotlin.test.assertNull
 import kotlin.test.expect
 
-class DropwizardCompatibleReaderTest {
+class KotlinCompatibleReaderTest {
 	private val reader = KotlinCompatibleReader()
 	private val spec: OpenAPI by lazy(LazyThreadSafetyMode.NONE) { reader.read(FakeResource::class.java) }
 
@@ -30,4 +29,3 @@ class DropwizardCompatibleReaderTest {
 		assertNull(operation?.requestBody, "@Auth parameter should be ignored as request body")
 	}
 }
-
