@@ -4,7 +4,7 @@ plugins {
 	`maven-publish`
 }
 
-group = "io.github.muliyul.kropwizard"
+group = "io.github.muliyul"
 version = "0.1"
 
 repositories {
