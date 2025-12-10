@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import io.dropwizard.core.Configuration
 import io.dropwizard.core.ConfiguredBundle
+import io.dropwizard.core.setup.Bootstrap
 import io.dropwizard.core.setup.Environment
 import io.dropwizard.jersey.setup.JerseyEnvironment
 import io.github.muliyul.kropwizard.co.CoroutineAwareModelConverter
@@ -14,11 +15,13 @@ import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource
 
 
 class KropwizardBundle<T : Configuration> : ConfiguredBundle<T> {
-	override fun run(configuration: T, environment: Environment) {
-		environment.objectMapper.registerKotlinModule().apply {
+	override fun initialize(bootstrap: Bootstrap<*>) {
+		bootstrap.objectMapper.registerKotlinModule().apply {
 			setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL)
 		}
+	}
 
+	override fun run(configuration: T, environment: Environment) {
 		environment.jersey().apply {
 			configureSwagger()
 			configureCoroutineSupport()

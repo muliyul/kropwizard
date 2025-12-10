@@ -1,4 +1,4 @@
-package io.github.muliyul.kropwizard.co
+package io.github.muliyul.kropwizard
 
 import io.dropwizard.testing.ConfigOverride
 import io.dropwizard.testing.ResourceHelpers
@@ -7,7 +7,6 @@ import io.dropwizard.testing.junit5.DropwizardExtensionsSupport
 import io.github.muliyul.kropwizard.testapp.TestApp
 import org.junit.jupiter.api.extension.ExtendWith
 import kotlin.test.Test
-
 
 @ExtendWith(DropwizardExtensionsSupport::class)
 class IntegrationTest {

@@ -2,9 +2,11 @@ package io.github.muliyul.kropwizard
 
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.dropwizard.core.Configuration
+import io.dropwizard.core.setup.Bootstrap
 import io.dropwizard.core.setup.Environment
 import io.github.muliyul.kropwizard.co.CoroutineAwareModelConverter
 import io.github.muliyul.kropwizard.co.CoroutineModelProcessor
+import io.github.muliyul.kropwizard.testapp.TestApp
 import io.swagger.v3.core.converter.ModelConverters
 import io.swagger.v3.jaxrs2.integration.resources.AcceptHeaderOpenApiResource
 import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource
@@ -17,8 +19,9 @@ class KropwizardBundleTest {
 
 	@Test
 	fun `should register Jackson Kotlin module`() {
-		bundle.run(Configuration(), environment)
-		val mapper = environment.objectMapper
+		val bootstrap = Bootstrap(TestApp())
+		bundle.initialize(bootstrap)
+		val mapper = bootstrap.objectMapper
 		assertContains(mapper.registeredModuleIds, KotlinModule::class.qualifiedName)
 	}
 
